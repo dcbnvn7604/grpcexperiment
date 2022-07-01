@@ -1,0 +1,5 @@
+services:
+  grpc:
+    build: .
+    volumes:
+      - .:/grpc
