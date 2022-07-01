@@ -1,7 +1,10 @@
 FROM python:3.8-slim
 
-RUN pip install pipenv
+COPY . /grpc
 
 WORKDIR /grpc
+
+RUN pip install pipenv
+RUN pipenv install --system
 
 ENTRYPOINT ["bash"] 
