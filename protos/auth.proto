@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+message AuthRequest {
+    oneof body {
+        Phase1 phase1 = 1;
+        Phase2 phase2 = 2;
+        Phase3 phase3 = 3;
+    }
+
+    message Phase1 {
+        string uname = 1;
+        bytes A = 2;
+    }
+
+    message Phase2 {
+        bytes M = 1;
+    }
+
+    message Phase3 {
+
+    }
+}
+
+message AuthResponse {
+    oneof body {
+        Phase1 phase1 = 1;
+        Phase2 phase2 = 2;
+        Phase3 phase3 = 3;
+    }
+
+    message Phase1 {
+        bytes s = 1;
+        bytes B = 2;
+    }
+
+    message Phase2 {
+        bytes HAMK = 1;
+    }
+
+    message Phase3 {
+        string token = 1;
+    }
+}
+
+service Auth {
+    rpc Authorize(stream AuthRequest) returns (stream AuthResponse) {};
+}
